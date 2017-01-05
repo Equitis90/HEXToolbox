@@ -8,10 +8,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: toolbox
+  database: 
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
+  username: 
+  password: 
   host: 127.0.0.1
   insert_returning: false
 
@@ -21,10 +21,10 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: toolbox_test
+  database: 
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
+  username: 
+  password: 
   host: 127.0.0.1
   insert_returning: false
 
