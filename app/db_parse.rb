@@ -6,11 +6,11 @@ require "net/http"
 class DbParse
   begin
     ActiveRecord::Base.establish_connection(
-        adapter:  'postgresql',
-        host:     'localhost',
-        database: 'toolbox',
-        username: 'toolbox',
-        password: 'DkflbckfdCbljhtyrj'
+        adapter:  '',
+        host:     '',
+        database: '',
+        username: '',
+        password: ''
     )
 
     class Object < ActiveRecord::Base
