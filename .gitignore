@@ -19,3 +19,5 @@
 /.idea
 # Ignore card images
 /assets/images/*
+/db_parse.rb
+/config/database.yml
