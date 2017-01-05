@@ -1,0 +1,8 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.popover {
+  max-width: 100%;
+  height: 510px;
+}

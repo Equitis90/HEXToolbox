@@ -1,0 +1,6 @@
+<% @game_objects.each do | g_obj | %>
+    <%= link_to( g_obj.name, game_object_show_path( id: g_obj.id ),
+        "rel" => "popover",
+        'data-img' => "/assets/#{g_obj.file_name}.png" ) %>
+    <br>
+<% end %>

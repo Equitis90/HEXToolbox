@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  atk: 1
+  cost: 1
+  name: MyString
+  text: MyText
+  type: MyText
+  uuid: MyString
+  color: MyText
+  artist: MyString
+  health: 1
+  rarity: MyString
+  faction: MyString
+  sub_type: MyString
+  threshold: MyText
+  set_number: MyText
+  socket_count: 1
+  equipment_uuids: MyText
+
+two:
+  atk: 1
+  cost: 1
+  name: MyString
+  text: MyText
+  type: MyText
+  uuid: MyString
+  color: MyText
+  artist: MyString
+  health: 1
+  rarity: MyString
+  faction: MyString
+  sub_type: MyString
+  threshold: MyText
+  set_number: MyText
+  socket_count: 1
+  equipment_uuids: MyText
