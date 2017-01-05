@@ -8,11 +8,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: toolbox
+  database: 
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
-  host: 127.0.0.1
+  username: 
+  password: 
+  host: 
   insert_returning: false
 
 # Warning: The database defined as "test" will be erased and
@@ -21,10 +21,10 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: toolbox_test
+  database: 
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
-  host: 127.0.0.1
+  username: 
+  password: 
+  host: 
   insert_returning: false
 
