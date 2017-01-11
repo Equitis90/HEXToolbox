@@ -1,0 +1,9 @@
+<% @game_objects.each do | g_obj | %>
+  <tr class="item">
+    <td>
+      <%= link_to image_tag( "cards/en/#{g_obj.file_name}.png", width: 320, height: 450 ), game_object_show_path( id: g_obj.id ) %>
+      <br>
+      <div> <%= g_obj.name %> </div>
+    </td>
+  </tr>
+<% end %>

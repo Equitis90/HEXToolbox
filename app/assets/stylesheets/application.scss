@@ -1,8 +1,27 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-multiselect";
 
-.popover {
+.card_popover {
   max-width: 100%;
   height: 510px;
+}
+
+.item {
+  float: left;
+  width: 30%;
+  margin: 20px;
+}
+
+.item div {
+  font-family: Verdana;
+  font-size: 110%;
+  color: darkgoldenrod;
+  font-weight: bold;
+  text-align: center;
+}
+.infinite-table {
+  width: 80%;
+  margin: auto;
 }

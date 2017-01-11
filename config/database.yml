@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: toolbox
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
+  username: <%= ENV['RAILS_DB_ROLE'] %>
+  password: <%= ENV['RAILS_DB_PASS'] %>
   host: 127.0.0.1
   insert_returning: false
 
@@ -16,7 +16,7 @@ test:
   encoding: unicode
   database: toolbox_test
   pool: 5
-  username: toolbox
-  password: DkflbckfdCbljhtyrj
+  username: <%= ENV['RAILS_DB_ROLE'] %>
+  password: <%= ENV['RAILS_DB_PASS'] %>
   host: 127.0.0.1
   insert_returning: false

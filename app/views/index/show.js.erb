@@ -1,0 +1,11 @@
+// Append new data
+$( "<%=j render( :partial => 'game_objects', :object => @game_objects ) %>" )
+    .appendTo( $( ".infinite-table table" ) );
+
+// Update pagination link
+<% if @game_objects.last_page? %>
+$( '.pagination' ).html( "That's all, folks!" );
+<% else %>
+$( '.pagination' )
+    .html( "<%=j link_to_next_page( @game_objects, 'Next Page', :remote => true ) %>" );
+<% end %>

@@ -1,16 +1,16 @@
 # encoding: utf-8
 require 'active_record'
 require "open-uri"
-require "net/http"
+require 'httparty'
 
 class DbParse
   begin
     ActiveRecord::Base.establish_connection(
-        adapter:  'postgres',
+        adapter:  'postgresql',
         host:     'localhost',
         database: 'toolbox',
-        username: 'toolbox',
-        password: 'DkflbckfdCbljhtyrj'
+        username: ENV['RAILS_DB_ROLE'],
+        password: ENV['RAILS_DB_PASS']
     )
 
     class Object < ActiveRecord::Base
@@ -44,25 +44,35 @@ class DbParse
       end
     end
 =end
+    count = 0
+    uri = ''
     GameObject.all.each do | g_obj |
-      url = URI.parse(URI.encode("http://cards.hex.gameforge.com/cardsdb/en/#{g_obj.name.gsub(/\[(.*)\]/, '')}.png") )
-      req = Net::HTTP.new(url.host, url.port)
-      res = req.request_head(url.path)
-      if res.code == "200"
-        if File.exist?("#{File.dirname(__FILE__)}/assets/images/#{g_obj.name.gsub( '\\', '' )}.png")
-          g_obj.file_name = "#{g_obj.name.gsub( '\\', '' )}"
-          g_obj.save!
-        else
-          File.open( "#{File.dirname(__FILE__)}/assets/images/#{g_obj.name.gsub( '\\', '' )}.png", 'wb') do |fo|
-            fo.write open(URI.encode("http://cards.hex.gameforge.com/cardsdb/en/#{g_obj.name}.png") ).read
+      g_obj.file_name = g_obj.file_name.gsub('.', '')
+      g_obj.save!
+      file_name = "#{File.dirname(__FILE__)}/assets/images/cards/en/#{g_obj.name.gsub( '\\', '' )}.png"
+      unless File.exist?( file_name )
+        uri = "http://cards.hex.gameforge.com/cardsdb/en/#{g_obj.name.gsub(/\[(.*)\]/, '')}.png"
+        begin
+          res = HTTParty.get( URI.encode( uri ) )
+        rescue Exception => e
+          puts uri
+          puts count
+          sleep( 2 )
+          retry
+        end
+        if res.code.to_s == '200'
+          puts "Writing #{g_obj.name}"
+          File.open( file_name.chomp( '.png' ).gsub( '.', '' ) + '.png', 'wb') do | fo |
+            fo.write( res.body )
           end
-          g_obj.file_name = "#{g_obj.name.gsub( '\\', '' )}"
+          g_obj.file_name = "#{g_obj.name.gsub( '\\', '' ).gsub( '.', '' )}"
           g_obj.save!
         end
+        count += 1
       end
-      puts "#{g_obj.name} processed"
     end
-  rescue PG::Error => e
+    puts count
+  rescue Exception => e
     puts e.message
   end
 end

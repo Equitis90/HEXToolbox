@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
   def show
-    @game_objects = GameObject.where( "object_type != 'Champion' AND object_type != 'Mod' AND object_type IS NOT NULL" ).limit( 50 )
+    @game_objects = GameObject.where( "object_type != 'Mod' AND object_type IS NOT NULL" ).order( :name ).page( params[ :page ] )
   end
 end

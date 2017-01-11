@@ -1,6 +1,17 @@
-<% @game_objects.each do | g_obj | %>
-    <%= link_to( g_obj.name, game_object_show_path( id: g_obj.id ),
-        "rel" => "popover",
-        'data-img' => "/assets/#{g_obj.file_name}.png" ) %>
-    <br>
-<% end %>
+<div>
+  <select id="set-selector" multiple="multiple">
+    <option value="Shards of Fate">Shards of Fate</option>
+    <option value="Shattered Destiny">Shattered Destiny</option>
+    <option value="Armies of Myth">Armies of Myth</option>
+    <option value="Primal Dawn">Primal Dawn</option>
+    <option value="Herofall">Herofall</option>
+  </select>
+</div>
+<div class="infinite-table">
+  <table>
+    <%= render :partial => 'game_objects', :object => @game_objects %>
+  </table>
+  <p class="pagination">
+    <%= link_to_next_page( @game_objects, 'Next Page', :remote => true ) %>
+  </p>
+</div>

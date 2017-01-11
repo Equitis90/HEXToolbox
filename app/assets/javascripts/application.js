@@ -14,10 +14,13 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.infinite-pages
+//= require bootstrap-multiselect
 //= require_tree .
 
 $(function () {
-    $('[rel="popover"]').popover({
+    $('#set-selector').multiselect();
+    $('[rel="card_popover"]').popover({
         trigger: 'hover',
         html: true,
         content: function(){ return '<img src="'+$(this).data('img') + '" width="350" height="490" />';}
