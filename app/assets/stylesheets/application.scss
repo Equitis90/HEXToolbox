@@ -10,18 +10,34 @@
 
 .item {
   float: left;
-  width: 30%;
-  margin: 20px;
+  margin: 0 1.5%;
+  width: 22%;
+}
+
+.item img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.infinite-table{
+  margin: auto;
 }
 
 .item div {
+  height: 40px;
   font-family: Verdana;
-  font-size: 110%;
+  font-size: 90%;
   color: darkgoldenrod;
   font-weight: bold;
   text-align: center;
 }
-.infinite-table {
-  width: 80%;
-  margin: auto;
+
+.well {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#search_form {
+  position:fixed;
 }

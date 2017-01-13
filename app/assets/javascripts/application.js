@@ -19,7 +19,6 @@
 //= require_tree .
 
 $(function () {
-    $('#set-selector').multiselect();
     $('[rel="card_popover"]').popover({
         trigger: 'hover',
         html: true,
