@@ -19,9 +19,20 @@
 //= require_tree .
 
 $(function () {
+    $( '#set_selector' ).multiselect( {
+        onChange: function() {
+            $( 'html, body' ).animate( { scrollTop: 0 }, 1000 );
+            $( '#search_form' ).trigger( 'submit.rails' );
+        }
+    });
+
+    $( '#card_name' ).bind( 'keyup', function () {
+        $( '#search_form' ).trigger( 'submit.rails' );
+    } );
+
     $('[rel="card_popover"]').popover({
         trigger: 'hover',
         html: true,
         content: function(){ return '<img src="'+$(this).data('img') + '" width="350" height="490" />';}
     })
-})
+});
