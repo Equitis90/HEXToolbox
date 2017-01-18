@@ -1,9 +1,20 @@
 <%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :remote => true ) do %>
   <div class="form-group">
-    <label for="set_selector">Set:</label>
-    <%= select_tag( 'set_selector[]', options_for_select( @sets.map { |h| h[:name] }, @set_selector ), { :multiple => "multiple", :id => 'set_selector', :autocomplete => :off }  ) %>
     <label for="card_name:">Card name:</label>
-    <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off} ) %>
+    <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 70 } ) %>
+    <label for="set_selector">Set:</label>
+    <%= select_tag( 'set_selector[]', options_for_select( @sets.map { |h| h[:name] }, @set_selector ),
+                    { :multiple => "multiple", :id => 'set_selector', :autocomplete => :off } ) %>
+    <br>
+    <label for="type_selector">Type:</label>
+    <%= select_tag( 'type_selector[]', options_for_select( @types.map { |h| h[:name] }, @type_selector ),
+                    { :multiple => "multiple", :id => 'type_selector', :autocomplete => :off } ) %>
+    <label for="sub_type_selector">Subtype:</label>
+    <%= select_tag( 'sub_type_selector[]', options_for_select( @sub_types.map { |h| h[:name] }, @sub_type_selector ),
+                    { :multiple => "multiple", :id => 'sub_type_selector', :autocomplete => :off } ) %>
+    <label for="cost_selector">Cost:</label>
+    <%= select_tag( 'cost_selector[]', options_for_select( @costs.map { |h| h[:name] }, @cost_selector ),
+                    { :multiple => "multiple", :id => 'cost_selector', :autocomplete => :off } ) %>
   </div>
 <% end %>
 <div class="well">

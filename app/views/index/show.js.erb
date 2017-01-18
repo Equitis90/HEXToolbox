@@ -9,8 +9,15 @@ $( ".infinite-table table" ).html("<%=j render( :partial => 'game_objects', :obj
 
 // Update pagination link
 <% if @game_objects.last_page? %>
-$( '.pagination' ).html( "That's all, folks!" );
+$( '.pagination' ).html( "That's all for now!" );
 <% else %>
 $( '.pagination' )
-    .html( "<%=j link_to_next_page( @game_objects, 'Next Page', :remote => true, :params => { :scroll => true, :set_selector => @set_selector, :card_name => @card_name } ) %>" );
+    .html( "<%=j link_to_next_page( @game_objects, 'Next Page', :remote => true, :params => {
+    :scroll => true,
+    :set_selector => @set_selector,
+    :card_name => @card_name,
+    :type_selector => @type_selector,
+    :cost_selector => @cost_selector,
+    :sub_type_selector => @subtype_selector
+    } ) %>" );
 <% end %>
