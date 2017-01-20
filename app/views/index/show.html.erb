@@ -1,20 +1,32 @@
-<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :remote => true ) do %>
+<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :class => 'well', :remote => true ) do %>
   <div class="form-group">
-    <label for="card_name:">Card name:</label>
-    <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 70 } ) %>
-    <label for="set_selector">Set:</label>
-    <%= select_tag( 'set_selector[]', options_for_select( @sets.map { |h| h[:name] }, @set_selector ),
+    <label for="card_name:">Card name:
+      <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 75 } ) %>
+    </label>
+    <label for="set_selector">Set:
+      <%= select_tag( 'set_selector[]', options_for_select( @sets.map { | h | h[ :name ] }, @set_selector ),
                     { :multiple => "multiple", :id => 'set_selector', :autocomplete => :off } ) %>
-    <br>
-    <label for="type_selector">Type:</label>
-    <%= select_tag( 'type_selector[]', options_for_select( @types.map { |h| h[:name] }, @type_selector ),
+    </label>
+    <label for="type_selector">Type:
+      <%= select_tag( 'type_selector[]', options_for_select( @types.map { | h | h[ :name ] }, @type_selector ),
                     { :multiple => "multiple", :id => 'type_selector', :autocomplete => :off } ) %>
-    <label for="sub_type_selector">Subtype:</label>
-    <%= select_tag( 'sub_type_selector[]', options_for_select( @sub_types.map { |h| h[:name] }, @sub_type_selector ),
+    </label>
+    <label for="sub_type_selector">Subtype:
+      <%= select_tag( 'sub_type_selector[]', options_for_select( @sub_types.map { | h | h[ :name ] }, @sub_type_selector ),
                     { :multiple => "multiple", :id => 'sub_type_selector', :autocomplete => :off } ) %>
-    <label for="cost_selector">Cost:</label>
-    <%= select_tag( 'cost_selector[]', options_for_select( @costs.map { |h| h[:name] }, @cost_selector ),
+    </label>
+    <label for="cost_selector">Cost:
+      <%= select_tag( 'cost_selector[]', options_for_select( @costs.map { | h | h[ :name ] }, @cost_selector ),
                     { :multiple => "multiple", :id => 'cost_selector', :autocomplete => :off } ) %>
+    </label>
+    <label for="shard_selector">Shard:
+    <%= select_tag( 'shard_selector[]', options_for_select( @shards.map { | h | [ h[ :name ], { 'data-img' => h[ :data_img ] } ] }, @shard_selector ),
+                    { :multiple => "multiple", :id => 'shard_selector', :autocomplete => :off } ) %>
+    </label>
+    <label for="rarity_selector">Rarity:
+      <%= select_tag( 'rarity_selector[]', options_for_select( @rarities.map { | h | h[ :name ] }, @rarity_selector ),
+                    { :multiple => "multiple", :id => 'rarity_selector', :autocomplete => :off } ) %>
+    </label>
   </div>
 <% end %>
 <div class="well">
