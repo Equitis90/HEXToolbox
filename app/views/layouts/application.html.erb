@@ -7,9 +7,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Cards', { controller: 'index', action: 'show' }, { remote: true } %></li>
+      <li><a href=".">Link</a></li>
+      <li><a href=".">Link</a></li>
+    </ul>
+  </div>
+</nav>
 <body>
 
-    <%= yield %>
+<div class="modal fade" id="modal-window" >
+
+</div>
+
+  <%= yield %>
 
 </body>
 </html>

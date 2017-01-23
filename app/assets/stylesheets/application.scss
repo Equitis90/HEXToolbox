@@ -4,13 +4,23 @@
 @import "bootstrap-multiselect";
 
 html body {
-  background: url('background.jpg') no-repeat fixed center;
+  background: url( 'background.jpg' ) no-repeat fixed center;
   background-size: 100%;
+}
+
+.navbar-default {
+  background: radial-gradient( lightblue, lightgrey );
+}
+
+.nav.navbar-nav li a {
+  font-family: cursive;
+  font-weight: bold;
+  color: black;
 }
 
 label {
   color: black;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 .wrappable {
@@ -47,14 +57,10 @@ label {
   text-align: center;
 }
 
-.well {
+.well.centered{
   width: 70%;
   margin: 10px auto;
-  background-color: royalblue;
-}
-
-#search_form {
-
+  background-color: rgba( lightgrey, 0.85 );
 }
 
 .form-group > * {
@@ -63,4 +69,29 @@ label {
 
 .multiselect-container {
   width: 100% !important;
+}
+
+#modal-window {
+  margin: 10px auto;
+  width: 70%;
+  background-color: ghostwhite;
+  border-radius: 20px;
+}
+
+#modal-window > .modal-body > img {
+  max-width: 40%;
+  width: auto;
+  height: auto;
+  float: left;
+  padding: 10px;
+}
+
+#modal-window > .modal-body > #card_info {
+  max-width: 60%;
+  float: left;
+  padding: 10px;
+}
+
+#modal-window > .modal-header > button {
+  padding-top: 10px;
 }

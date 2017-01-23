@@ -1,4 +1,4 @@
-<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :class => 'well', :remote => true ) do %>
+<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :class => 'well centered', :remote => true ) do %>
   <div class="form-group">
     <label for="card_name:">Card name:
       <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 75 } ) %>
@@ -27,9 +27,13 @@
       <%= select_tag( 'rarity_selector[]', options_for_select( @rarities.map { | h | h[ :name ] }, @rarity_selector ),
                     { :multiple => "multiple", :id => 'rarity_selector', :autocomplete => :off } ) %>
     </label>
+    <label for="pvp_only_selector">PVP cards only:
+      <%= check_box_tag( 'pvp_only_selector', @pvp_only_selector ? '2' : '1', @pvp_only_selector || false,
+                      { :id => 'pvp_only_selector', :autocomplete => :off } ) %>
+    </label>
   </div>
 <% end %>
-<div class="well">
+<div class="well centered">
   <div class="infinite-table">
     <table>
       <%= render :partial => 'game_objects', :object => @game_objects %>
@@ -39,3 +43,4 @@
     </p>
   </div>
 </div>
+<%= javascript_include_tag('multiselect_loader.js') %>

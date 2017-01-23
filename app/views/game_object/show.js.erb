@@ -1,0 +1,4 @@
+$("#modal-window").html( '<%= j render "game_object/card_info" %>' );
+$("#modal-window").bind('clickoutside',function() {
+    $("#modal-window").html( '' );
+});

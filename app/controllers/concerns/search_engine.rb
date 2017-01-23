@@ -49,16 +49,33 @@ module SearchEngine
       :object_type => [ nil, 'Mersenary', 'Champion', 'Equipment', 'Mod' ] )
       .order( :sub_type ).map { |g_obj| { :name => g_obj.sub_type } }
 
-    search_query = "(NOT (object_type IN ('Mod', 'Mersenary', 'Champion', 'Equipment') OR object_type IS NULL)) AND set_number != 'UNSET'"
+    search_query = "(NOT (object_type IN ('Mod', 'Mersenary', 'Champion', 'Equipment') OR object_type IS NULL OR set_number IN ('UNSET', 'AI Only Cards'))) AND rarity != 'Non-Collectible'"
     req_params = {}
-    if params[ :set_selector ]
-      if params[ :set_selector ].size == 1
-        search_query += ' AND set_number = :set_selector'
-      else
-        search_query += ' AND set_number IN (:set_selector)'
+    if params[ :pvp_only_selector ]
+      @pvp_only_selector = true
+      if params[ :set_selector ].nil?
+        search_query += " AND set_number NOT IN('Set01_PvE_Arena', 'AZ1', 'PvE_AZ1_Created_Effects', 'AZ2', 'PvE_AZ2_Created_Effects', 'Set03_PvE_Promo', 'Set04_PvE_Promo', 'Set05_PvE_Promo', 'Engineering_Oddities')"
       end
-      @set_selector = params[ :set_selector ]
-      req_params[:set_selector] = params[ :set_selector ]
+    end
+    if params[ :set_selector ]
+      if @pvp_only_selector
+        params[ :set_selector ].each do | set |
+          if set.in?(%w'Set01_PvE_Arena AZ1 PvE_AZ1_Created_Effects AZ2 PvE_AZ2_Created_Effects Set03_PvE_Promo Set04_PvE_Promo Set05_PvE_Promo Engineering_Oddities')
+            params[ :set_selector ] -= set
+          end
+        end
+      end
+      if params[ :set_selector ].empty?
+        search_query += " AND set_number NOT IN('Set01_PvE_Arena', 'AZ1', 'PvE_AZ1_Created_Effects', 'AZ2', 'PvE_AZ2_Created_Effects', 'Set03_PvE_Promo', 'Set04_PvE_Promo', 'Set05_PvE_Promo', 'Engineering_Oddities')"
+      else
+        if params[ :set_selector ].size == 1
+          search_query += ' AND set_number = :set_selector'
+        else
+          search_query += ' AND set_number IN (:set_selector)'
+        end
+        @set_selector = params[ :set_selector ]
+        req_params[:set_selector] = params[ :set_selector ]
+      end
     end
     if params[ :type_selector ]
       if params[ :type_selector ].size == 1
