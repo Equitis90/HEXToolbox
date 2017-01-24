@@ -49,9 +49,22 @@ $( document ).ready( function() {
         }
     });
 
-    $( '#card_name' ).bind( 'keyup', function () {
+    var typingTimer;
+    var doneTypingInterval = 700;
+    var $input = $( '#card_name') ;
+
+    $input.on( 'keyup', function () {
+        clearTimeout( typingTimer );
+        typingTimer = setTimeout( doneTyping, doneTypingInterval );
+    });
+
+    $input.on( 'keydown', function () {
+        clearTimeout( typingTimer );
+    });
+
+    function doneTyping () {
         $( '#search_form' ).trigger( 'submit.rails' );
-    } );
+    }
 
     $( '#pvp_only_selector' ).on( 'click', function () {
         $( '#search_form' ).trigger( 'submit.rails' );

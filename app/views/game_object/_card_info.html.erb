@@ -5,6 +5,7 @@
 <div class="modal-body">
   <%= image_tag( "cards/en/#{@card.file_name}.png" ) %>
   <div id="card_info">
-
+    <%= @card.text.gsub('#VAR1_1#', '1').gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
+        .gsub( '#SELF#', @card.name ).gsub('#IGNORE_CHAIN#', '').html_safe %>
   </div>
 </div>
