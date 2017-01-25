@@ -49,7 +49,7 @@ module SearchEngine
       :object_type => [ nil, 'Mersenary', 'Champion', 'Equipment', 'Mod' ] )
       .order( :sub_type ).map { |g_obj| { :name => g_obj.sub_type } }
 
-    search_query = "(NOT (object_type IN ('Mod', 'Mersenary', 'Champion', 'Equipment') OR object_type IS NULL OR set_number IN ('UNSET', 'AI Only Cards'))) AND rarity != 'Non-Collectible'"
+    search_query = "(NOT (object_type IN ('Mod', 'Mercenary', 'Champion', 'Equipment') OR set_number IN ('UNSET', 'AI Only Cards', 'None_Defined'))) AND rarity != 'Non-Collectible' AND object_type IS NOT NULL"
     req_params = {}
     if params[ :pvp_only_selector ]
       @pvp_only_selector = true

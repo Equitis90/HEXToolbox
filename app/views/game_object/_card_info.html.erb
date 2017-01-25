@@ -5,7 +5,27 @@
 <div class="modal-body">
   <%= image_tag( "cards/en/#{@card.file_name}.png" ) %>
   <div id="card_info">
-    <%= @card.text.gsub('#VAR1_1#', '1').gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
-        .gsub( '#SELF#', @card.name ).gsub('#IGNORE_CHAIN#', '').html_safe %>
+    <%= label_tag 'card_text_label', 'Card text:' %>
+    <div id="card_text">
+      <p><%= @card.text.gsub('#VAR1_1#', '1').gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
+          .gsub( '#SELF#', @card.name ).gsub('#IGNORE_CHAIN#', '').html_safe %> </p>
+    </div>
+    <hr>
+    <p><%= label_tag 'card_set_label', 'Card set:' %>
+       <%= @card.set_number %></p>
+    <hr>
+    <% unless @equipments.empty? %>
+      <%= label_tag 'equipment_label', 'Card equipment:' %>
+      <br>
+      <% @equipments.each do | uuid, equipment | %>
+        <%= image_tag( equipment[ :file_name ] == 'DefaultSleeve' ? 'DefaultEquipment.png' :"cards/en/#{equipment[ :file_name ]}.png" ) %>
+        <p><b><%= equipment[ :name ] %></b></p>
+        <p><%= label_tag( 'equipment_slot', 'Slot:' ) %> <%= equipment[ :slot ] %></p>
+        <p><%= label_tag( 'equipment_text', 'Text:' ) %> <%= equipment[ :text ].gsub('#VAR1_1#', '1')
+          .gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
+          .gsub( '#SELF#', @card.name ).gsub('#IGNORE_CHAIN#', '').html_safe %></p>
+        <hr>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -1,10 +1,15 @@
 class GameObjectController < ApplicationController
   def show
-    @card = GameObject.where( id: params[ :id ]).first
+    @card = GameObject.where( id: params[ :id ] ).first
     @equipments = {}
     if @card.equipment_uuids != ''
-      GameObject.where( uuid: @card.equipment_uuids.split( ', ' ) ).each do | g_obj |
-        @equipments[ g_obj.uuid ] = { name: g_obj.name, file_name: g_obj.file_name, text: g_obj.text }
+      GameObject.where( uuid: @card.equipment_uuids.split( ', ' ) ).each do | equipment |
+        @equipments[ equipment.uuid ] = {
+            name: equipment.name,
+            file_name: equipment.file_name,
+            text: equipment.text,
+            slot: equipment.sub_type
+        }
       end
     end
     respond_to do |format|

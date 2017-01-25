@@ -87,13 +87,29 @@ label {
 }
 
 #modal-window > .modal-body > #card_info {
-  max-width: 60%;
+  width: 60%;
   float: left;
   padding: 10px;
 }
 
 #modal-window > .modal-header > button {
   padding-top: 10px;
+}
+
+#card_info > img {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+#top-link-block.affix-top {
+  position: absolute;
+  bottom: -82px;
+  left: 10px;
+}
+#top-link-block.affix {
+  position: fixed;
+  bottom: 18px;
+  left: 10px;
 }
 
 span.\[RUBY\] {
@@ -358,6 +374,41 @@ span.\[L5\]\[R0\] {
 span.\[L6\]\[R0\] {
   background: url('l6r0.png');
   width: 27px;
+  height: 12px;
+  display: inline-block;
+}
+
+span.\[L0\]\[R1\] {
+  background: url('l0r1.png');
+  width: 28px;
+  height: 12px;
+  display: inline-block;
+}
+
+span.\[L0\]\[R2\] {
+  background: url('l0r2.png');
+  width: 28px;
+  height: 12px;
+  display: inline-block;
+}
+
+span.\[L0\]\[R3\] {
+  background: url('l0r3.png');
+  width: 28px;
+  height: 12px;
+  display: inline-block;
+}
+
+span.\[L0\]\[R10\] {
+  background: url('l0r10.png');
+  width: 28px;
+  height: 12px;
+  display: inline-block;
+}
+
+span.\[L1\]\[R1\] {
+  background: url('l0r1.png');
+  width: 28px;
   height: 12px;
   display: inline-block;
 }
