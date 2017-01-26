@@ -21,9 +21,7 @@
         <%= image_tag( equipment[ :file_name ] == 'DefaultSleeve' ? 'DefaultEquipment.png' :"cards/en/#{equipment[ :file_name ]}.png" ) %>
         <p><b><%= equipment[ :name ] %></b></p>
         <p><%= label_tag( 'equipment_slot', 'Slot:' ) %> <%= equipment[ :slot ] %></p>
-        <p><%= label_tag( 'equipment_text', 'Text:' ) %> <%= equipment[ :text ].gsub('#VAR1_1#', '1')
-          .gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
-          .gsub( '#SELF#', @card.name ).gsub('#IGNORE_CHAIN#', '').html_safe %></p>
+        <p><%= label_tag( 'equipment_text', 'Text:' ) %> <%= equipment[ :text ].html_safe %></p>
         <hr>
       <% end %>
     <% end %>
