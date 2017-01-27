@@ -1,7 +1,7 @@
 <% @game_objects.each do | g_obj | %>
   <tr class="item">
     <td>
-      <%= link_to image_tag( "cards/en/#{g_obj.file_name}.png" ), game_object_show_path( id: g_obj.id ),
+      <%= link_to image_tag( @image_urls[ g_obj.id ] ), game_object_show_path( id: g_obj.id ),
         {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} %>
       <div> <%= g_obj.name %> </div>
     </td>
