@@ -3,7 +3,7 @@
   <h3 id="cardLabel"><%= @card.name %></h3>
 </div>
 <div class="modal-body">
-  <%= image_tag( @image_url ) %>
+  <%= image_tag( @card.file_name ) %>
   <div id="card_info">
     <%= label_tag 'card_text_label', 'Card text:' %>
     <div id="card_text">
@@ -18,7 +18,7 @@
       <%= label_tag 'equipment_label', 'Card equipment:' %>
       <br>
       <% @equipments.each do | uuid, equipment | %>
-        <%= image_tag( equipment[ :file_name ] == 'DefaultSleeve' ? 'DefaultEquipment.png' : "equipment/#{equipment[ :file_name ]}.png" ) %>
+        <%= image_tag( equipment[ :file_name ] == 'DefaultSleeve.png' ? 'DefaultEquipment.png' : equipment[ :file_name ] ) %>
         <p><b><%= equipment[ :name ] %></b></p>
         <p><%= label_tag( 'equipment_slot', 'Slot:' ) %> <%= equipment[ :slot ] %></p>
         <p><%= label_tag( 'equipment_text', 'Text:' ) %> <%= equipment[ :text ].html_safe %></p>

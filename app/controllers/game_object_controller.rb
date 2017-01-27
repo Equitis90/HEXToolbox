@@ -1,15 +1,6 @@
 class GameObjectController < ApplicationController
   def show
     @card = GameObject.where( id: params[ :id ] ).first
-    if @card.file_name == 'DefaultSleeve'
-      @image_url =  'DefaultSleeve.png'
-    else
-      if @card.file_name  =~ /AA/
-        @image_url = "http://cards.hex.gameforge.com/cardsdb/en/#{@card.name.gsub(/\[(.*)\]/, '')} AA.png"
-      else
-        @image_url = "http://cards.hex.gameforge.com/cardsdb/en/#{@card.name.gsub(/\[(.*)\]/, '')}.png"
-      end
-    end
     @equipments = {}
     if @card.equipment_uuids != ''
       GameObject.where( uuid: @card.equipment_uuids.split( ', ' ) ).each do | equipment |
