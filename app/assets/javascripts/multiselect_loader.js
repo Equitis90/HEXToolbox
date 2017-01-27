@@ -69,5 +69,4 @@ $( document ).ready( function() {
     $( '#pvp_only_selector' ).on( 'click', function () {
         $( '#search_form' ).trigger( 'submit.rails' );
     } );
-
 });
