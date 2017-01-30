@@ -13,7 +13,7 @@ html body {
 }
 
 .nav.navbar-nav li a {
-  font-family: cursive;
+  font-family: "Lucida Grande";
   font-weight: bold;
   color: black;
 }
@@ -42,6 +42,8 @@ label {
   max-width: 100%;
   width: auto;
   height: auto;
+  background: url( <%= asset_path 'DefaultSleeve.png' %> ) no-repeat;
+  background-size: contain;
 }
 
 .infinite-table{
@@ -50,14 +52,14 @@ label {
 
 .item div {
   height: 40px;
-  font-family: Verdana;
+  font-family: "Lucida Grande";
   font-size: 90%;
   color: black;
   font-weight: bold;
   text-align: center;
 }
 
-.well.centered{
+.well.right {
   width: 75%;
   float: right;
   margin: 0 10px 10px 10px;

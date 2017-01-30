@@ -1,4 +1,4 @@
-<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :class => 'well centered', :remote => true ) do %>
+<%= form_tag( {:controller => 'index', :action => 'show'}, :method => 'get', :id => 'search_form', :class => 'well right', :remote => true ) do %>
   <div class="form-group">
     <label for="card_name:">Card name:
       <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 75 } ) %>
@@ -33,7 +33,7 @@
     </label>
   </div>
 <% end %>
-<div class="well centered">
+<div class="well right">
   <div class="infinite-table">
     <table>
       <%= render :partial => 'game_objects', :object => @game_objects %>

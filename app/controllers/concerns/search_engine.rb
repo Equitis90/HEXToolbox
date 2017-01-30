@@ -43,13 +43,15 @@ module SearchEngine
         { :name => 'Epic' },
         { :name => 'Promo' }
     ]
+    @slots = GameObject.select( :sub_type ).distinct.where( object_type: 'Equipment' ).order( :sub_type )
+       .map { |g_obj| { :name => g_obj.sub_type } }
     @costs = GameObject.select( :cost ).distinct.where.not( :cost => nil )
       .order( :cost ).map { |g_obj| { :name => g_obj.cost } }
     @sub_types = GameObject.select( :sub_type ).distinct.where.not( :sub_type => [ nil, '' ],
       :object_type => [ nil, 'Mersenary', 'Champion', 'Equipment', 'Mod' ] )
       .order( :sub_type ).map { |g_obj| { :name => g_obj.sub_type } }
 
-    search_query = "(NOT (object_type IN ('Mod', 'Mercenary', 'Champion', 'Equipment') OR set_number IN ('UNSET', 'AI Only Cards', 'None_Defined'))) AND rarity != 'Non-Collectible' AND object_type IS NOT NULL AND object_type != ''"
+    search_query = ''
     req_params = {}
     if params[ :pvp_only_selector ]
       @pvp_only_selector = true

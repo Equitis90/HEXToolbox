@@ -1,0 +1,14 @@
+<% @equipments.each do | equipment | %>
+    <tr class="equipment">
+      <td>
+        <%= image_tag( equipment.file_name == 'DefaultSleeve.png' ? 'DefaultEquipment.png' : equipment.file_name ) %>
+        <br>
+        <p><b><%= equipment.name %></b></p>
+        <p><%= label_tag( 'equipment_slot', 'Slot:' ) %> <%= equipment.sub_type %></p>
+        <p><%= label_tag( 'equipment_text', 'Text:' ) %> <%= equipment.text.gsub('#VAR1_1#', '1')
+           .gsub(/\[([\(0-9\)]+|[A-Z\-^\]]+|[L0-9\]\[R0-9]+)\]/, '<span class=\0></span>')
+           .gsub( '#SELF#', equipment.name ).gsub('#IGNORE_CHAIN#', '').html_safe %></p>
+        <hr>
+      </td>
+    </tr>
+<% end %>

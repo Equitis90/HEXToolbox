@@ -1,0 +1,22 @@
+<% if @scroll %>
+// Append new data
+$( "<%=j render( :partial => 'equipments', :object => @equipments ) %>" )
+    .appendTo( $( ".infinite-table table" ) );
+<% else %>
+// Replace table
+$( ".infinite-table table" ).html("<%=j render( :partial => 'equipments', :object => @equipments ) %>" );
+<% end %>
+
+// Update pagination link
+<% if @equipments.last_page? %>
+$( '.pagination' ).html( "That's all for now!" );
+<% else %>
+$( '.pagination' )
+    .html( "<%=j link_to_next_page( @equipments, 'Next Page', :remote => true, :params => {
+    :scroll => true,
+    :set_selector => @set_selector,
+    :card_name => @card_name,
+    :sub_type_selector => @sub_type_selector,
+    :rarity_selector => @rarity_selector,
+    } ) %>" );
+<% end %>

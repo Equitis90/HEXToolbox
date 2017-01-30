@@ -1,0 +1,30 @@
+<%= form_tag( {:controller => 'equipment', :action => 'list'}, :method => 'get', :id => 'search_form', :class => 'well right', :remote => true ) do %>
+    <div class="form-group">
+      <label for="card_name:">Equipment name:
+        <%= text_field_tag( 'card_name', @card_name || '', { :autocomplete => :off, :size => 75 } ) %>
+      </label>
+      <label for="set_selector">Set:
+        <%= select_tag( 'set_selector[]', options_for_select( @sets.map { | h | h[ :name ] }, @set_selector ),
+                        { :multiple => "multiple", :id => 'set_selector', :autocomplete => :off } ) %>
+      </label>
+      <label for="sub_type_selector">Slot:
+        <%= select_tag( 'sub_type_selector[]', options_for_select( @slots.map { | h | h[ :name ] }, @sub_type_selector ),
+                        { :multiple => "multiple", :id => 'sub_type_selector', :autocomplete => :off } ) %>
+      </label>
+      <label for="rarity_selector">Rarity:
+        <%= select_tag( 'rarity_selector[]', options_for_select( @rarities.map { | h | h[ :name ] }, @rarity_selector ),
+                        { :multiple => "multiple", :id => 'rarity_selector', :autocomplete => :off } ) %>
+      </label>
+    </div>
+<% end %>
+<div class="well right">
+  <div class="infinite-table">
+    <table>
+      <%= render :partial => 'equipments', :object => @equipments %>
+    </table>
+    <p class="pagination">
+      <%= link_to_next_page( @equipments, 'Next Page', :remote => true, :params => { :scroll => true } ) %>
+    </p>
+  </div>
+</div>
+<%= javascript_include_tag('multiselect_loader.js') %>
