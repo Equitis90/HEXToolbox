@@ -111,21 +111,34 @@ module SearchEngine
       @sub_type_selector = params[ :sub_type_selector ]
       req_params[:sub_type_selector] = params[ :sub_type_selector ]
     end
+    if params[ :sel_shards_only_selector ]
+      @sel_shards_only_selector = true
+    end
     if params[ :shard_selector ]
-      if params[ :shard_selector ].size == 1
-        search_query += ' AND color = :shard_selector'
-        req_params[:shard_selector] = params[ :shard_selector ]
-      else
-        difference = ['Diamond', 'Ruby', 'Sapphire', 'Wild', 'Blood'] - params[ :shard_selector ]
-        if difference.empty?
-          search_query += ' AND color LIKE ALL (ARRAY[:shard_selector])'
-          req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+      if params[ :sel_shards_only_selector ]
+        if params[ :shard_selector ].size == 1
+          search_query += ' AND color = :shard_selector'
+          req_params[:shard_selector] = params[ :shard_selector ]
         else
-          search_query += ' AND color LIKE ANY (ARRAY[:shard_selector]) AND color NOT LIKE ALL(ARRAY[:shard_diff])'
-          req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
-          req_params[:shard_diff] = difference.map { | shard | "%#{shard}%" }
+          difference = %w'Diamond Ruby Sapphire Wild Blood' - params[ :shard_selector ]
+          if difference.empty?
+            search_query += ' AND color LIKE ALL (ARRAY[:shard_selector])'
+            req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+          else
+            search_query += ' AND color LIKE ANY (ARRAY[:shard_selector]) AND color NOT LIKE ALL(ARRAY[:shard_diff])'
+            req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+            req_params[:shard_diff] = difference.map { | shard | "%#{shard}%" }
+          end
         end
+      else
+        if params[ :shard_selector ].size == 1
+          search_query += ' AND color LIKE :shard_selector'
+        else
+          search_query += ' AND color LIKE ANY (ARRAY[:shard_selector])'
+        end
+        req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
       end
+
       @shard_selector = params[ :shard_selector ]
     end
     if params[ :rarity_selector ]

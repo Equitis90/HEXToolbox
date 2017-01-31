@@ -51,7 +51,7 @@ $( document ).ready( function() {
 
     var typingTimer;
     var doneTypingInterval = 700;
-    var $input = $( '#card_name') ;
+    var $input = $( '#card_name' ) ;
 
     $input.on( 'keyup', function () {
         clearTimeout( typingTimer );
@@ -66,7 +66,7 @@ $( document ).ready( function() {
         $( '#search_form' ).trigger( 'submit.rails' );
     }
 
-    $( '#pvp_only_selector' ).on( 'click', function () {
+    $( '#pvp_only_selector, #sel_shards_only_selector' ).on( 'click', function () {
         $( '#search_form' ).trigger( 'submit.rails' );
     } );
 });
