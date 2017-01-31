@@ -116,8 +116,15 @@ module SearchEngine
         search_query += ' AND color = :shard_selector'
         req_params[:shard_selector] = params[ :shard_selector ]
       else
-        search_query += ' AND color LIKE ALL (ARRAY[:shard_selector])'
-        req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+        difference = ['Diamond', 'Ruby', 'Sapphire', 'Wild', 'Blood'] - params[ :shard_selector ]
+        if difference.empty?
+          search_query += ' AND color LIKE ALL (ARRAY[:shard_selector])'
+          req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+        else
+          search_query += ' AND color LIKE ANY (ARRAY[:shard_selector]) AND color NOT LIKE ALL(ARRAY[:shard_diff])'
+          req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
+          req_params[:shard_diff] = difference.map { | shard | "%#{shard}%" }
+        end
       end
       @shard_selector = params[ :shard_selector ]
     end
