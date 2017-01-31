@@ -113,12 +113,13 @@ module SearchEngine
     end
     if params[ :shard_selector ]
       if params[ :shard_selector ].size == 1
-        search_query += ' AND color LIKE :shard_selector'
+        search_query += ' AND color = :shard_selector'
+        req_params[:shard_selector] = params[ :shard_selector ]
       else
-        search_query += ' AND color LIKE ANY (ARRAY[:shard_selector])'
+        search_query += ' AND color LIKE ALL (ARRAY[:shard_selector])'
+        req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
       end
       @shard_selector = params[ :shard_selector ]
-      req_params[:shard_selector] = params[ :shard_selector ].map { | shard | "%#{shard}%" }
     end
     if params[ :rarity_selector ]
       if params[ :rarity_selector ].size == 1
