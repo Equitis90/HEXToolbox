@@ -89,7 +89,7 @@ module SearchEngine
       req_params[:type_selector] = params[ :type_selector ]
     end
     unless params[ :card_name ].blank?
-      search_query += ' AND name LIKE :card_name'
+      search_query += ' AND name ILIKE :card_name'
       @card_name = params[ :card_name ]
       req_params[:card_name] = "#{params[ :card_name ]}%"
     end
