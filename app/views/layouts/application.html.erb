@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>HEXToolbox</title>
-  <%= favicon_link_tag %>
+  <%= favicon_link_tag 'logo.jpg' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,8 +12,6 @@
     <ul class="nav navbar-nav" data-turbolinks="false">
       <li><%= link_to 'Cards', { controller: 'index', action: 'show' } %></li>
       <li><%= link_to 'Equipments', { controller: 'equipment', action: 'list' } %></li>
-      <li><a href=".">Decks (in development)</a></li>
-      <li><a href=".">Auction House (in development)</a></li>
     </ul>
   </div>
 </nav>
@@ -34,6 +32,17 @@
       width="100%"
       allowfullscreen="true">
     </iframe>
+    <br/>
+    <script type="text/javascript" src="https://counter4.01counter.com/private/counter.js?c=f69cf59c3f2706d240017ca8b5a53351"></script>
+    <noscript><a href="http://www.freecounterstat.com" title="page counter"><img src="https://counter4.01counter.com/private/freecounterstat.php?c=f69cf59c3f2706d240017ca8b5a53351" border="0" title="page counter" alt="page counter"></a>
+    </noscript>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-1253774228165732",
+            enable_page_level_ads: true
+        });
+    </script>
   </div>
   <%= yield %>
 <span id="top-link-block" class="hidden">
