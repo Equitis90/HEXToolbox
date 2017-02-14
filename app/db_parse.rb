@@ -13,10 +13,6 @@ class DbParse
         password: ENV['RAILS_DB_PASS']
     )
 
-    class Object < ActiveRecord::Base
-
-    end
-
     class GameObject < ActiveRecord::Base
 
     end
@@ -62,8 +58,6 @@ class DbParse
     end
 =end
     count = 0
-    #GameObject.update_all( file_name: 'DefaultSleeve' )
-    GameObject.update_all( file_name: 'DefaultSleeve.png' )
 
     GameObject.all.each do | g_obj |
       uri = "http://cards.hex.gameforge.com/cardsdb/en/#{g_obj.name.gsub(/\[(.*)\]/, '').gsub(':', '')}.png"
