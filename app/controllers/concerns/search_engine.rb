@@ -6,6 +6,7 @@ module SearchEngine
         { :name => 'Primal Dawn' },
         { :name => 'Armies of Myth' },
         { :name => 'Herofall' },
+        { :name => 'Scars of War' },
         { :name => 'Set01_PvE_Arena' },
         { :name => 'AZ1' },
         { :name => 'PvE_AZ1_Created_Effects' },

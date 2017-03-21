@@ -41,9 +41,7 @@ label {
 .item img {
   max-width: 100%;
   width: auto;
-  height: auto;
-  background: url( <%= asset_path 'DefaultSleeve.png' %> ) no-repeat;
-  background-size: contain;
+  height: 100%;
 }
 
 .infinite-table{
@@ -128,6 +126,10 @@ label {
 .equipment > td > img {
   float: left;
   margin: 0 10px 10px 0;
+  background: url( <%= asset_path 'DefaultEquipment.png' %> ) no-repeat;
+  background-size: 100%;
+  height: 75px;
+  width: 75px;
 }
 
 .oneandone {

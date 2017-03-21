@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  card_id: 1
+  deck_id: 
+  reserve: false
+
+two:
+  amount: 1
+  card_id: 1
+  deck_id: 
+  reserve: false

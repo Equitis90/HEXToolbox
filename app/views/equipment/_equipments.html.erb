@@ -1,7 +1,7 @@
 <% @equipments.each do | equipment | %>
     <tr class="equipment">
       <td>
-        <%= image_tag( equipment.file_name == 'DefaultSleeve.png' ? 'DefaultEquipment.png' : equipment.file_name ) %>
+        <%= image_tag( equipment.file_name ) %>
         <br>
         <p><b><%= equipment.name %></b></p>
         <p><%= label_tag( 'equipment_slot', 'Slot:' ) %> <%= equipment.sub_type %></p>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-02-20
+  ign: MyString
+  tournament_id: MyString
+  type: 
+  name: MyString
+  points_won: 1
+  wins: 1
+  losses: 1
+  champion_id: 1
+
+two:
+  date: 2017-02-20
+  ign: MyString
+  tournament_id: MyString
+  type: 
+  name: MyString
+  points_won: 1
+  wins: 1
+  losses: 1
+  champion_id: 1
